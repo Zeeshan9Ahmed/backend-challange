@@ -3,9 +3,16 @@
 namespace App\AppHumanResources\Attendance\Application;
 
 use App\Models\AppHumanResources\Attendance\Domain\Attendance;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportAttendance;
+
 
 class AttendanceService
 {
+
+    public function upload($request) {
+        Excel::import(new ImportAttendance, $request->file('file')->store('files'));
+    }
     public function showAttendance()
     {
         $attendance = Attendance::with('user:id,name')->select('*')

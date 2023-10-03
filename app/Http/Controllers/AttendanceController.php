@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\AppHumanResources\Attendance\Application\AttendanceService;
-use App\Imports\ImportAttendance;
 use Illuminate\Http\Request;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Validator;
-use Maatwebsite\Excel\Facades\Excel;
 
 class AttendanceController extends Controller
 {
@@ -26,8 +24,8 @@ class AttendanceController extends Controller
             return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        $request->validate([]);
-        Excel::import(new ImportAttendance, $request->file('file')->store('files'));
+        
+        $this->attendanceService->upload($request);
         return response()->json(['message' => 'Attendance data uploaded successfully']);
     }
 

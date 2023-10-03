@@ -11,4 +11,25 @@ class ApplicationController extends Controller
     {
         return $service->groupByOwnersService();
     }
+
+    public function duplicates () {
+        // One approach is 
+        $arr = [2, 3, 1, 2, 3];
+        $seen = [];
+        $duplicates = [];
+    
+        foreach ($arr as $num) {
+            if (isset($seen[$num])) {
+                $duplicates[] = $num;
+            } else {
+                $seen[$num] = true;
+            }
+        }
+    
+        return array_unique($duplicates);
+
+        // Second Approach is by using brute force approach 
+
+        // third approach is using binary search 
+    }
 }

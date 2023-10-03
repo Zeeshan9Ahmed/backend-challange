@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Attendance;
+use App\Models\AppHumanResources\Attendance\Domain\Attendance ;
 use DateTime;
 use Maatwebsite\Excel\Concerns\ToModel;
 
